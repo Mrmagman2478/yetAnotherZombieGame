@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AI_WaveSystem : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class AI_WaveSystem : MonoBehaviour {
     public float timeToNextWave = 2;
     public float nextSpawnTime;
     public int initialSpawnAmont;
+    public Text GUI_CurrentWave;
     //not editable in inspector but visible
     [SerializeField]
     int amountSpawned = 0;
@@ -43,6 +45,7 @@ public class AI_WaveSystem : MonoBehaviour {
 
     void FixedUpdate()
     {
+        GUI_CurrentWave.text = "Wave: "+ waveLevel.ToString();
         if (waveInProgress)
         {
             waveTimer = timeToNextWave;
@@ -55,6 +58,7 @@ public class AI_WaveSystem : MonoBehaviour {
                 amountSpawned = 0;
                 roundKillCount = 0;
                 lastWaveSize = lastWaveSize + waveSize;
+                player.GetComponent<Character_Controller>().addScore(100);
             }
         }
         else

@@ -49,7 +49,8 @@ public class Health : MonoBehaviour {
                 if (myslef.layer == LayerMask.NameToLayer("Player"))
                 {
                     myslef.GetComponent<Character_Movement>().enabled = false;
-                    myslef.GetComponent<Character_Camera_Movement>().enabled = false;
+                    myslef.GetComponentInChildren<Character_Camera_Movement>().enabled = false;
+                    myslef.GetComponent<Gun_Script>().enabled = false;
                 }
                 else
                 {
@@ -65,6 +66,7 @@ public class Health : MonoBehaviour {
     {
         return isAlive;
     }
+    public float getHealth() { return health; }
     //alow other code to tell gameobject to respawn
     public void setRespawn()
     {

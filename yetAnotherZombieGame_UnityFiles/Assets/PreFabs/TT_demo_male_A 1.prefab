@@ -361,8 +361,8 @@ GameObject:
   - component: {fileID: 114121878448364358}
   - component: {fileID: 136004632024576274}
   - component: {fileID: 114075472787690956}
-  - component: {fileID: 114413539176449710}
   - component: {fileID: 114648558443955626}
+  - component: {fileID: 114805362953916404}
   m_Layer: 8
   m_Name: TT_demo_male_A 1
   m_TagString: Player
@@ -453,7 +453,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4764202937027896}
-  - component: {fileID: 114351461417424312}
   m_Layer: 0
   m_Name: CartoonSMGprefab
   m_TagString: Untagged
@@ -532,6 +531,7 @@ GameObject:
   - component: {fileID: 20661055544940424}
   - component: {fileID: 124679339705754606}
   - component: {fileID: 81044612913736996}
+  - component: {fileID: 114014721054321026}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -905,7 +905,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883488544618352}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.44, y: -0.3, z: 0.63}
+  m_LocalPosition: {x: -0.346, y: -0.3, z: 0.416}
   m_LocalScale: {x: 0.25, y: 0.25000006, z: 0.25000006}
   m_Children:
   - {fileID: 4257564886947276}
@@ -993,13 +993,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958664046572932}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0.06, y: 3.34, z: -1.95}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0.06, y: 1.2, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4980100445342592}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!4 &4947299310591072
 Transform:
   m_ObjectHideFlags: 1
@@ -1242,6 +1242,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114014721054321026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958664046572932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ad8d53389ea234293521e202529979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 5
+  smoothing: 2
+  player: {fileID: 1752905623479760}
+  gun: {fileID: 1883488544618352}
 --- !u!114 &114075472787690956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1269,39 +1284,6 @@ MonoBehaviour:
   Pace: 10
   JumpHeight: 0.1
   animator: {fileID: 95506049007691254}
---- !u!114 &114351461417424312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1883488544618352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe2747f098711c44a82c352155b62b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1867821138679520, guid: 89ecf9a845e1d8b4584503298ffd17f1,
-    type: 2}
-  bulletSlot: {fileID: 4470946379751822}
-  fireRate: 1
-  fireSpeed: 0.25
-  fireForce: 5000
-  spread: 0
-  time: 0
---- !u!114 &114413539176449710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1752905623479760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ad8d53389ea234293521e202529979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 5
-  smoothing: 2
-  player: {fileID: 1752905623479760}
 --- !u!114 &114648558443955626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1316,6 +1298,32 @@ MonoBehaviour:
   characterSpeed: 10
   characterJumpHeight: 0.1
   kills: 0
+  score: 0
+  GUI_kills: {fileID: 0}
+  GUI_Health: {fileID: 0}
+  GUI_Score: {fileID: 0}
+  GameOver_Score: {fileID: 0}
+  GameOver: {fileID: 0}
+  Restrart: {fileID: 0}
+--- !u!114 &114805362953916404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752905623479760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe2747f098711c44a82c352155b62b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1867821138679520, guid: 89ecf9a845e1d8b4584503298ffd17f1,
+    type: 2}
+  bulletSlot: {fileID: 4470946379751822}
+  fireRate: 1
+  fireSpeed: 0.25
+  fireForce: 5000
+  spread: 0
+  time: 0
 --- !u!124 &124679339705754606
 Behaviour:
   m_ObjectHideFlags: 1

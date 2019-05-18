@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour {
                     if (runOnce)
                     {
                         myslef.GetComponent<Character_Controller>().addKill();
+                        myslef.GetComponent<Character_Controller>().addScore(10);
                         runOnce = false;
                     }
                 }

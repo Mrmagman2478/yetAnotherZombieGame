@@ -13,7 +13,6 @@ public class Character_Movement : MonoBehaviour {
     Animator animator;
     void Start () {
         body = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
         animator = this.GetComponent<Animator>();
     }
     void Update()

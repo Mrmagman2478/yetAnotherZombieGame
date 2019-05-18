@@ -47,7 +47,7 @@ public class Gun_Script : MonoBehaviour {
             firstfire = false;
             GameObject bullet = Instantiate(bulletPrefab, bulletSlot.position, bulletSlot.rotation);
             //get main gameobject by getting this script parent gameobject and then getting it parent what is main gameobject.This will allow multiple character in later version
-            bullet.GetComponent<Bullet>().setMyslefAsOwn(this.transform.parent.gameObject.transform.parent.gameObject);
+            bullet.GetComponent<Bullet>().setMyslefAsOwn(this.gameObject);
             bullet.GetComponent<Rigidbody>().AddForce(bulletSlot.forward * fireForce);
         }
 

@@ -11,6 +11,7 @@ public class Character_Camera_Movement : MonoBehaviour
     public float smoothing = 2.0f;
 
     public GameObject player;
+    public GameObject gun;
 	
 	void Update () {
 
@@ -21,9 +22,11 @@ public class Character_Camera_Movement : MonoBehaviour
         smoothVector.x = Mathf.Lerp(smoothVector.x, md.x, 1f / smoothing);
         smoothVector.y = Mathf.Lerp(smoothVector.y, md.y, 1f / smoothing);
         mouseLook += smoothVector;
-        mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
+        mouseLook.y = Mathf.Clamp(mouseLook.y, -20f, 20f);
 
-        //transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        //transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
+        //gun.transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         player.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, player.transform.up);
+        //gun.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, player.transform.up);
     }
 }
