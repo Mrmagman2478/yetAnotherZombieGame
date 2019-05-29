@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class AI_WaveSystem : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class AI_WaveSystem : MonoBehaviour {
     public float nextSpawnTime;
     public int initialSpawnAmont;
     public Text GUI_CurrentWave;
+    public GameObject GUI_WaveCounter;
+    public Text GUI_CounterText;
     //not editable in inspector but visible
     [SerializeField]
     int amountSpawned = 0;
@@ -23,7 +26,7 @@ public class AI_WaveSystem : MonoBehaviour {
     [SerializeField]
     GameObject player;
     [SerializeField]
-    bool waveInProgress = true;
+    bool waveInProgress = false;
     [SerializeField]
     int waveLevel = 1;
     [SerializeField]
@@ -33,6 +36,8 @@ public class AI_WaveSystem : MonoBehaviour {
     [SerializeField]
     float waveTimer;
 
+    float boastZombies = 10;
+
     // Use this for initialization
     void Start () {
 
@@ -40,14 +45,13 @@ public class AI_WaveSystem : MonoBehaviour {
         waveSize = initialWaveSize;
         spawnTimer = nextSpawnTime;
         waveTimer = timeToNextWave;
-
     }
 
     void FixedUpdate()
     {
-        GUI_CurrentWave.text = "Wave: "+ waveLevel.ToString();
         if (waveInProgress)
         {
+            GUI_CurrentWave.text = "Wave: " + waveLevel.ToString();
             waveTimer = timeToNextWave;
             roundKillCount = player.GetComponent<Character_Controller>().getKills() - lastWaveSize;
             spawnWave();
@@ -59,17 +63,30 @@ public class AI_WaveSystem : MonoBehaviour {
                 roundKillCount = 0;
                 lastWaveSize = lastWaveSize + waveSize;
                 player.GetComponent<Character_Controller>().addScore(100);
+                if(waveLevel > boastZombies)
+                {
+                    if (Zombie_Prefab.GetComponent<NavMeshAgent>().speed < 10)
+                    {
+                        Zombie_Prefab.GetComponent<NavMeshAgent>().speed++;
+                    }
+                    Zombie_Prefab.GetComponent<Health>().health = Zombie_Prefab.GetComponent<Health>().health + 10;
+                    boastZombies = boastZombies + 10;
+                }
             }
         }
         else
         {
+            
+            GUI_WaveCounter.SetActive(true);
+            GUI_CounterText.text = ((int)waveTimer).ToString();
             waveTimer -= Time.deltaTime;
-            if(waveTimer <= 0)
+            if (waveTimer < 0)
             {
                 waveInProgress = true;
                 //Apply multipler then round to nears hole number(Unity always rounds down). Write own round instead quick casting
                 waveSize = (int)(waveSize * multiplerAmount);
                 initialSpawnAmont =(int)(initialSpawnAmont * multiplerAmount);
+                GUI_WaveCounter.SetActive(false);
             }
         }
     }

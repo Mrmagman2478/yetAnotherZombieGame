@@ -244,6 +244,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PreFabs\Text_Anim\hitDisplay.cs" />
     <Compile Include="Assets\Scripts\AI\AI_Controller.cs" />
     <Compile Include="Assets\Scripts\AI\AI_Pathfinding.cs" />
     <Compile Include="Assets\Scripts\AI\AI_WaveSystem.cs" />
